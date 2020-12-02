@@ -24,3 +24,23 @@ func puzzle2(input []string) int {
 	}
 	return valid
 }
+
+func Puzzle2b() int {
+	input := readFile("input/input02")
+	return puzzle2b(input)
+}
+
+func puzzle2b(input []string) int {
+	var valid int
+	for _, line := range input {
+		var pos1, pos2 int
+		var pass string
+		var letter byte
+		fmt.Sscanf(line, "%d-%d %c: %s", &pos1, &pos2, &letter, &pass)
+
+		if (pass[pos1-1] == letter) != (pass[pos2-1] == letter) {
+			valid++
+		}
+	}
+	return valid
+}
