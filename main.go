@@ -3,5 +3,5 @@ package main
 import "fmt"
 
 func main() {
-	fmt.Println(Puzzle4())
+	fmt.Println(Puzzle4b())
 }
