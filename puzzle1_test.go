@@ -24,7 +24,7 @@ func TestPuzzle1(t *testing.T) {
 func ExamplePuzzle1() {
 	fmt.Println(Puzzle1())
 
-	// Output: Puzzle1 result: 1019571
+	// Output: 1019571
 }
 
 func TestPuzzle1b(t *testing.T) {
@@ -46,5 +46,5 @@ func TestPuzzle1b(t *testing.T) {
 func ExamplePuzzle1b() {
 	fmt.Println(Puzzle1b())
 
-	// Output: Puzzle1b result: 100655544
+	// Output: 100655544
 }
