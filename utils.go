@@ -48,3 +48,11 @@ func max(data []int) int {
 	}
 	return m
 }
+
+func toIntMap(data []int) map[int]struct{} {
+	jmap := make(map[int]struct{}, len(data))
+	for _, n := range data {
+		jmap[n] = struct{}{}
+	}
+	return jmap
+}
