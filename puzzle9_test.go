@@ -68,7 +68,7 @@ func TestPuzzle9b(t *testing.T) {
 	}
 }
 
-func ExampleTest9b() {
+func ExamplePuzzle9b() {
 	fmt.Println(Puzzle9b())
 
 	// Output: 4794981
