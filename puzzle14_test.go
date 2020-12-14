@@ -23,3 +23,21 @@ func ExamplePuzzle14() {
 
 	// Output: 14839536808842
 }
+
+func TestPuzzle14b(t *testing.T) {
+	data := strings.Split(`mask = 000000000000000000000000000000X1001X
+mem[42] = 100
+mask = 00000000000000000000000000000000X0XX
+mem[26] = 1`, "\n")
+	expect := 208
+	result := puzzle14b(data)
+	if result != expect {
+		t.Fatalf("expected %d, got %d", expect, result)
+	}
+}
+
+func ExamplePuzzle14b() {
+	fmt.Println(Puzzle14b())
+
+	// Output: 4215284199669
+}
