@@ -5,17 +5,17 @@ import (
 )
 
 func puzzle15(data []int, endTurn int) int {
-	h := make(map[int]int, len(data))
+	h := make([]int, endTurn)
 	for i, n := range data {
 		h[n] = i + 1
 	}
 
 	var prev int
 	for turn := len(data) + 1; turn < endTurn; turn++ {
-		i, ok := h[prev]
+		i := h[prev]
 		h[prev] = turn
 
-		if ok {
+		if i != 0 {
 			prev = turn - i
 		} else {
 			prev = 0
