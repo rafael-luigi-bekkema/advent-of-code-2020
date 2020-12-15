@@ -1,46 +1,27 @@
 package main
 
 import (
-	"fmt"
 	"strings"
 )
 
-type p15item struct {
-	prev, last int
-}
-
 func puzzle15(data []int, endTurn int) int {
-	h := make(map[int]p15item)
-	var last int
+	h := make(map[int]int, len(data))
 	for i, n := range data {
-		h[n] = p15item{h[n].last, i + 1}
-		last = n
+		h[n] = i + 1
 	}
-	// fmt.Println(data)
-	for turn := len(data) + 1; ; turn++ {
-		var n int
-		// fmt.Printf("turn %d: ", turn)
-		if h[last].prev != 0 {
-			n = h[last].last - h[last].prev
-			// fmt.Printf("%d old (%d-%d)\n", n, h[last][len(h[last])-1], h[last][len(h[last])-2])
+
+	var prev int
+	for turn := len(data) + 1; turn < endTurn; turn++ {
+		i, ok := h[prev]
+		h[prev] = turn
+
+		if ok {
+			prev = turn - i
 		} else {
-			// fmt.Printf("%d new\n", n)
-		}
-
-		fmt.Printf("%d: %d\n", turn, n)
-
-		// if turn%1000_000 == 0 {
-		// 	fmt.Printf("%.1f %%\n", float64(turn)/float64(endTurn)*100)
-		// }
-
-		h[n] = p15item{h[n].last, turn}
-		last = n
-
-		if turn == endTurn {
-			break
+			prev = 0
 		}
 	}
-	return last
+	return prev
 }
 
 func Puzzle15() int {
