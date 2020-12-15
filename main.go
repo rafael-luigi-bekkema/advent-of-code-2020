@@ -41,6 +41,8 @@ func main() {
 		Puzzle13b,
 		Puzzle14,
 		Puzzle14b,
+		Puzzle15,
+		Puzzle15b,
 	}
 
 	day, _ := strconv.Atoi(os.Args[1])
