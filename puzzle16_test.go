@@ -31,3 +31,28 @@ func ExamplePuzzle16() {
 
 	// Output: 18142
 }
+
+func TestPuzzle16b(t *testing.T) {
+	data := strings.Split(`departure class: 0-1 or 4-19
+departure row: 0-5 or 8-19
+seat: 0-13 or 16-19
+
+your ticket:
+11,12,13
+
+nearby tickets:
+3,9,18
+15,1,5
+5,14,9`, "\n")
+	expect := 132
+	result := puzzle16b(data)
+	if result != expect {
+		t.Fatalf("expected %d, got %d", expect, result)
+	}
+}
+
+func ExamplePuzzle16b() {
+	fmt.Println(Puzzle16b())
+
+	// Output: 1069784384303
+}
