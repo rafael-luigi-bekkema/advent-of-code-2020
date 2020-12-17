@@ -22,3 +22,20 @@ func ExamplePuzzle17() {
 
 	// Output: 359
 }
+
+func TestPuzzle17b(t *testing.T) {
+	data := strings.Split(`.#.
+..#
+###`, "\n")
+	expect := 848
+	result := puzzle17b(data)
+	if result != expect {
+		t.Fatalf("expected %d, got %d", expect, result)
+	}
+}
+
+func ExamplePuzzle17b() {
+	fmt.Println(Puzzle17b())
+
+	// Output: 2228
+}
