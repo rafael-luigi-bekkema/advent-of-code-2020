@@ -1,46 +1,77 @@
 package main
 
-func p18parse(expr string) (int, int) {
-	var i, total int
-	var op byte
-	for {
-		var n1 int
-		if expr[i] == '(' {
-			var newpos int
-			n1, newpos = p18parse(expr[i+1:])
-			i += newpos + 1
-		} else {
-			n1 = int(expr[i]) - 48
-		}
-		if op == 0 {
-			total = n1
-		} else {
-			switch op {
-			case '+':
-				total += n1
-			case '*':
-				total *= n1
-			}
-		}
+import (
+	"fmt"
+	"strings"
+)
 
-		if i >= len(expr)-3 || expr[i+1] == ')' {
-			i++
-			break
-		}
-
-		op = expr[i+2]
-
-		i += 4
-		if i >= len(expr) {
-			break
-		}
-	}
-	return total, i
+type p18op struct {
+	value int
+	op    byte
 }
 
-func p18calc(expr string) int {
-	n1, _ := p18parse(expr)
-	return n1
+type tokenizer struct {
+	data       string
+	pos        int
+	tok        byte
+	precedence map[byte]int
+}
+
+func (t *tokenizer) nextToken() bool {
+	if t.pos >= len(t.data) {
+		return false
+	}
+
+	t.tok = t.data[t.pos]
+	t.pos++
+	return true
+}
+
+func (t *tokenizer) resolve(calcs []p18op) int {
+	for prec := 0; prec <= 1; prec++ {
+		for i := 0; i < len(calcs); i++ {
+			op := calcs[i]
+			if i > 0 && t.precedence[op.op] == prec {
+				prevop := calcs[i-1]
+				if op.op == '+' {
+					calcs[i-1].value = prevop.value + op.value
+				} else {
+					calcs[i-1].value = prevop.value * op.value
+				}
+				calcs = append(calcs[:i], calcs[i+1:]...)
+				i--
+				continue
+			}
+		}
+	}
+	if len(calcs) != 1 {
+		panic(fmt.Sprintf("expected 1 value, got %d", len(calcs)))
+	}
+	return calcs[0].value
+}
+
+func (t *tokenizer) parse() int {
+	var op byte
+	var calcs []p18op
+	for t.nextToken() {
+		var n1 int
+		if t.tok == '(' {
+			n1 = t.parse()
+		} else {
+			n1 = int(t.tok) - 48
+		}
+		calcs = append(calcs, p18op{n1, op})
+		if !t.nextToken() || t.tok == ')' {
+			break
+		}
+		op = t.tok
+	}
+	return t.resolve(calcs)
+}
+
+func p18calc(line string) int {
+	t := tokenizer{data: strings.ReplaceAll(line, " ", "")}
+	return t.parse()
 }
 
 func puzzle18(data []string) int {
@@ -56,67 +87,12 @@ func Puzzle18() int {
 	return puzzle18(data)
 }
 
-type p18op struct {
-	value int
-	op    byte
-}
-
-func p18parseb(expr string) (int, int) {
-	var i int
-	var op byte
-	var calcs []p18op
-	for {
-		var n1 int
-		if expr[i] == '(' {
-			var newpos int
-			n1, newpos = p18parseb(expr[i+1:])
-			i += newpos + 1
-		} else {
-			n1 = int(expr[i]) - 48
-		}
-		calcs = append(calcs, p18op{n1, op})
-
-		if i >= len(expr)-3 || expr[i+1] == ')' {
-			i++
-			break
-		}
-
-		op = expr[i+2]
-
-		i += 4
-		if i >= len(expr) {
-			break
-		}
-	}
-	for {
-		var changed bool
-		for i, op := range calcs {
-			if op.op == '+' {
-				prevop := calcs[i-1]
-				calcs[i-1].value = prevop.value + op.value
-				calcs = append(calcs[:i], calcs[i+1:]...)
-				changed = true
-				break
-			}
-		}
-		if !changed {
-			break
-		}
-	}
-	var total int
-	for i, op := range calcs {
-		if i == 0 {
-			total = op.value
-		} else {
-			total *= op.value
-		}
-	}
-	return total, i
-}
-
 func p18calcb(expr string) int {
-	n1, _ := p18parseb(expr)
-	return n1
+	t := tokenizer{data: strings.ReplaceAll(expr, " ", ""), precedence: map[byte]int{
+		'+': 0,
+		'*': 1,
+	}}
+	return t.parse()
 }
 
 func puzzle18b(data []string) int {
