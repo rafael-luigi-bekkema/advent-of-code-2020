@@ -74,16 +74,16 @@ func puzzle17b(data []string) int {
 	isActive = func(newGrid map[coord]bool, depth int, c coord) bool {
 		var count int
 		for i := 0; i < 81; i++ {
+			if i == 40 {
+				continue // 0, 0, 0, 0
+			}
+
 			newc := c
 			z := i/27 - 1
 			x := i%3 - 1
 			y := i%9/3 - 1
 			w := i%27/9 - 1
 
-			if z == 0 && x == 0 && y == 0 && w == 0 {
-				// fmt.Println(i)
-				continue // 0, 0, 0
-			}
 			newc.x += x
 			newc.y += y
 			newc.z += z
