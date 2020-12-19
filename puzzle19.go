@@ -25,38 +25,49 @@ type p19opts struct {
 	rules map[int]p19check
 }
 
-func (o *p19opts) Check(data *p19data) bool {
+func (o *p19opts) Check(data *p19data, level int) []int {
+	var results []int
 	for _, opt := range o.opts {
 		matches := true
 		ndata := *data
+		poss := []int{data.pos}
 		for _, rule := range opt {
-			if !o.rules[rule].Check(&ndata) {
+			var subposs []int
+			for _, pos := range poss {
+				ndata.pos = pos
+				r := o.rules[rule].Check(&ndata, level+1)
+				subposs = append(subposs, r...)
+			}
+			poss = subposs
+			if len(subposs) == 0 {
 				matches = false
 				break
 			}
 		}
 		if matches {
-			data.pos = ndata.pos
-			return true
+			results = append(results, poss...)
 		}
 	}
-	return false
+	return results
 }
 
 type p19val struct {
 	value byte
 }
 
-func (v *p19val) Check(data *p19data) bool {
+func (v *p19val) Check(data *p19data, level int) []int {
 	result := data.next() && data.current == v.value
-	return result
+	if !result {
+		return nil
+	}
+	return []int{data.pos}
 }
 
 type p19check interface {
-	Check(data *p19data) bool
+	Check(data *p19data, level int) []int
 }
 
-func puzzle19(data []string) int {
+func puzzle19(data []string, b bool) int {
 	m := make(map[int]p19check)
 	for _, line := range data {
 		if line == "" {
@@ -77,10 +88,16 @@ func puzzle19(data []string) int {
 
 	}
 
+	if b {
+		m[8] = &p19opts{rules: m, opts: [][]int{{42}, {42, 8}}}
+		m[11] = &p19opts{rules: m, opts: [][]int{{42, 31}, {42, 11, 31}}}
+	}
+
 	var count int
 	for _, line := range data[len(m)+1:] {
 		d := p19data{data: line}
-		if m[0].Check(&d) && d.pos == len(line) {
+		check := m[0].Check(&d, 0)
+		if len(check) > 0 && check[0] == len(line) {
 			count++
 		}
 	}
@@ -89,5 +106,10 @@ func puzzle19(data []string) int {
 
 func Puzzle19() int {
 	data := readFile("input/input19")
-	return puzzle19(data)
+	return puzzle19(data, false)
+}
+
+func Puzzle19b() int {
+	data := readFile("input/input19")
+	return puzzle19(data, true)
 }
