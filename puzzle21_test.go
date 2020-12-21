@@ -23,3 +23,21 @@ func ExamplePuzzle21() {
 
 	// Output: 2374
 }
+
+func TestPuzzle21b(t *testing.T) {
+	data := strings.Split(`mxmxvkd kfcds sqjhc nhms (contains dairy, fish)
+trh fvjkl sbzzf mxmxvkd (contains dairy)
+sqjhc fvjkl (contains soy)
+sqjhc mxmxvkd sbzzf (contains fish)`, "\n")
+	expect := "mxmxvkd,sqjhc,fvjkl"
+	result := puzzle21b(data)
+	if result != expect {
+		t.Fatalf("expected %s, got %s", expect, result)
+	}
+}
+
+func ExamplePuzzle21b() {
+	fmt.Println(Puzzle21b())
+
+	// Output: fbtqkzc,jbbsjh,cpttmnv,ccrbr,tdmqcl,vnjxjg,nlph,mzqjxq
+}
