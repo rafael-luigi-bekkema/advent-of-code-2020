@@ -96,7 +96,7 @@ func copyDecks(data [2][]int) [2][]int {
 
 func puzzle22b(data []string) int {
 	var subgame func(decks *[2][]int, game int) int
-	debug := true
+	debug := false
 	subgame = func(decks *[2][]int, game int) int {
 		var round int
 		var deckHistory [][2][]int
