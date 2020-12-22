@@ -5,6 +5,6 @@ import (
 )
 
 func main() {
-	result := Puzzle22b()
+	result := Puzzle15b()
 	fmt.Printf("Result: %v\n", result)
 }
