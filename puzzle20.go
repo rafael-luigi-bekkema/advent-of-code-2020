@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"io/ioutil"
 	"log"
+	"math"
 	"strings"
 )
 
@@ -14,31 +15,49 @@ type p20tile struct {
 	data [100]bool
 }
 
-func (t *p20tile) rotate() {
-	data := t.data
-	for i, val := range data {
-		row := i / p20width
-		col := i % p20width
-		newrow := col
-		newcol := p20width - 1 - row
-		t.data[newrow*p20width+newcol] = val
-	}
-}
-
-func (t *p20tile) hflip() {
-	data := t.data
-	for i, val := range data {
-		row := i / p20width
-		col := i % p20width
-		newcol := p20width - 1 - col
-		newrow := row
-		t.data[newrow*p20width+newcol] = val
-	}
-}
-
-func (t *p20tile) print() {
+func (t *p20tile) cut() [64]bool {
+	var result [64]bool
+	var j int
 	for i, val := range t.data {
-		if i%p20width == 0 {
+		row := i / p20width
+		col := i % p20width
+		if row == 0 || row == 9 {
+			continue
+		}
+		if col == 0 || col == 9 {
+			continue
+		}
+		result[j] = val
+		j++
+	}
+	return result
+}
+
+func rotate(dest []bool, width int) {
+	data := append([]bool{}, dest...)
+	for i, val := range data {
+		row := i / width
+		col := i % width
+		newrow := col
+		newcol := width - 1 - row
+		dest[newrow*width+newcol] = val
+	}
+}
+
+func hflip(dest []bool, width int) {
+	data := append([]bool{}, dest...)
+	for i, val := range data {
+		row := i / width
+		col := i % width
+		newcol := width - 1 - col
+		newrow := row
+		dest[newrow*width+newcol] = val
+	}
+}
+
+func print(data []bool, width int) {
+	for i, val := range data {
+		if i%width == 0 {
 			fmt.Println()
 		}
 		var c byte
@@ -50,6 +69,41 @@ func (t *p20tile) print() {
 		fmt.Printf("%c", c)
 	}
 	fmt.Println()
+}
+
+func monsters(data []bool, width int) int {
+	monster := "                  # " +
+		"#    ##    ##    ###" +
+		" #  #  #  #  #  #   "
+	mWidth := 20
+	var count int
+	for i := range data {
+		row := i / width
+		col := i % width
+		if col+20 > width {
+			continue
+		}
+		if row+3 > width {
+			continue
+		}
+		found := true
+		for j, v := range []byte(monster) {
+			if v != '#' {
+				continue
+			}
+			mrow := j / mWidth
+			mcol := j % mWidth
+
+			if !data[(mrow+row)*width+(mcol+col)] {
+				found = false
+				break
+			}
+		}
+		if found {
+			count++
+		}
+	}
+	return count
 }
 
 func (t *p20tile) match(t2 *p20tile) (x int, y int) {
@@ -87,7 +141,12 @@ type p20pos struct {
 	tile *p20tile
 }
 
-func puzzle20(data string) int {
+type p20result struct {
+	board                  []p20pos
+	minx, maxx, miny, maxy int
+}
+
+func puzzle20solve(data string) p20result {
 	tileDs := strings.Split(data, "\n\n")
 	tiles := make([]p20tile, len(tileDs))
 	for i, tileD := range tileDs {
@@ -109,7 +168,7 @@ func puzzle20(data string) int {
 		first.num: true,
 	}
 	tiles = tiles[1:]
-	var minx, maxx, miny, maxy int
+	var result p20result
 
 	for i := 0; i < len(board); i++ {
 		tile := board[i]
@@ -133,36 +192,47 @@ func puzzle20(data string) int {
 						tiles = append(tiles[:j], tiles[j+1:]...)
 						j--
 						count++
-						if newpos.x < minx {
-							minx = newpos.x
+						if newpos.x < result.minx {
+							result.minx = newpos.x
 						}
-						if newpos.x > maxx {
-							maxx = newpos.x
+						if newpos.x > result.maxx {
+							result.maxx = newpos.x
 						}
-						if newpos.y < miny {
-							miny = newpos.y
+						if newpos.y < result.miny {
+							result.miny = newpos.y
 						}
-						if newpos.y > maxy {
-							maxy = newpos.y
+						if newpos.y > result.maxy {
+							result.maxy = newpos.y
 						}
 						break Outer
 					}
-					dTile.rotate()
+					rotate(dTile.data[:], p20width)
 				}
-				dTile.hflip()
+				hflip(dTile.data[:], p20width)
 			}
 		}
 	}
 
-	fboard := make(map[[2]int]int, len(board))
-	for _, tile := range board {
+	if len(tiles) > 0 {
+		panic(fmt.Sprintf("pieces remaining: %d", len(tiles)))
+	}
+
+	result.board = board
+	return result
+}
+
+func puzzle20(data string) int {
+	result := puzzle20solve(data)
+
+	fboard := make(map[[2]int]int, len(result.board))
+	for _, tile := range result.board {
 		fboard[[2]int{tile.x, tile.y}] = tile.tile.num
 	}
 	nums := []int{
-		fboard[[2]int{minx, miny}],
-		fboard[[2]int{minx, maxy}],
-		fboard[[2]int{maxx, miny}],
-		fboard[[2]int{maxx, maxy}],
+		fboard[[2]int{result.minx, result.miny}],
+		fboard[[2]int{result.minx, result.maxy}],
+		fboard[[2]int{result.maxx, result.miny}],
+		fboard[[2]int{result.maxx, result.maxy}],
 	}
 
 	var total int
@@ -181,5 +251,46 @@ func Puzzle20() int {
 	if err != nil {
 		log.Panicf("could not read file: %s", err)
 	}
-	return puzzle20(string(data))
+	return puzzle20(string(data[:len(data)-1]))
+}
+
+func puzzle20b(data string) int {
+	result := puzzle20solve(data)
+	picture := make([]bool, len(result.board)*64)
+	width := int(math.Sqrt(float64(len(result.board)))) * 8
+
+	for _, tile := range result.board {
+		col := (result.minx*-1 + tile.x) * 8
+		row := (result.miny*-1 + tile.y) * 8
+		for i, c := range tile.tile.cut() {
+			scol := i % 8
+			srow := i / 8
+			picture[(row+srow)*width+(col+scol)] = c
+		}
+	}
+
+	var hashCount int
+	for _, c := range picture {
+		if c {
+			hashCount++
+		}
+	}
+
+	for i := 0; i < 4; i++ {
+		m := monsters(picture[:], width)
+		if m > 0 {
+			hashCount -= m * 15
+			break
+		}
+		rotate(picture[:], width)
+	}
+	return hashCount
+}
+
+func Puzzle20b() int {
+	data, err := ioutil.ReadFile("input/input20")
+	if err != nil {
+		log.Panicf("could not read file: %s", err)
+	}
+	return puzzle20b(string(data[:len(data)-1]))
 }
