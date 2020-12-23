@@ -42,8 +42,8 @@ func TestPuzzle18(t *testing.T) {
 	}
 }
 
-func ExamplePuzzle18() {
-	fmt.Println(Puzzle18())
+func ExampleSolutions_Puzzle18() {
+	fmt.Println(solutions.Puzzle18())
 
 	// Output: 9535936849815
 }
@@ -84,8 +84,8 @@ func TestPuzzle18b(t *testing.T) {
 	}
 }
 
-func ExamplePuzzle18b() {
-	fmt.Println(Puzzle18b())
+func ExampleSolutions_Puzzle18b() {
+	fmt.Println(solutions.Puzzle18b())
 
 	// Output: 472171581333710
 }

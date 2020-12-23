@@ -157,12 +157,12 @@ func puzzle16b(data []string) int {
 	return total
 }
 
-func Puzzle16() int {
+func (s *Solutions) Puzzle16() int {
 	data := readFile("input/input16")
 	return puzzle16(data)
 }
 
-func Puzzle16b() int {
+func (s *Solutions) Puzzle16b() int {
 	data := readFile("input/input16")
 	return puzzle16b(data)
 }

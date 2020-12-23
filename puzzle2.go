@@ -5,7 +5,7 @@ import (
 	"strings"
 )
 
-func Puzzle2() int {
+func (s *Solutions) Puzzle2() int {
 	input := readFile("input/input02")
 	return puzzle2(input)
 }
@@ -25,7 +25,7 @@ func puzzle2(input []string) int {
 	return valid
 }
 
-func Puzzle2b() int {
+func (s *Solutions) Puzzle2b() int {
 	input := readFile("input/input02")
 	return puzzle2b(input)
 }

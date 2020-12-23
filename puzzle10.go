@@ -30,7 +30,7 @@ Outer:
 	return result[1] * result[3]
 }
 
-func Puzzle10() int {
+func (s *Solutions) Puzzle10() int {
 	data := toNumbers(readFile("input/input10"))
 	return puzzle10(data)
 }
@@ -91,7 +91,7 @@ func puzzle10b(data []int) int {
 	return result
 }
 
-func Puzzle10b() int {
+func (s *Solutions) Puzzle10b() int {
 	data := toNumbers(readFile("input/input10"))
 	return puzzle10b(data)
 }

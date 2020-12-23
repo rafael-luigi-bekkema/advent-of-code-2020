@@ -98,12 +98,12 @@ func puzzle4(input []string, validation bool) int {
 	return validCount
 }
 
-func Puzzle4() int {
+func (s *Solutions) Puzzle4() int {
 	input := readFile("input/input04")
 	return puzzle4(input, false)
 }
 
-func Puzzle4b() int {
+func (s *Solutions) Puzzle4b() int {
 	input := readFile("input/input04")
 	return puzzle4(input, true)
 }

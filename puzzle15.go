@@ -24,12 +24,12 @@ func puzzle15(data []int, endTurn int) int {
 	return prev
 }
 
-func Puzzle15() int {
+func (s *Solutions) Puzzle15() int {
 	data := "0,12,6,13,20,1,17"
 	return puzzle15(toNumbers(strings.Split(data, ",")), 2020)
 }
 
-func Puzzle15b() int {
+func (s *Solutions) Puzzle15b() int {
 	data := "0,12,6,13,20,1,17"
 	return puzzle15(toNumbers(strings.Split(data, ",")), 30_000_000)
 }

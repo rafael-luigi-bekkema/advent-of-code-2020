@@ -104,12 +104,12 @@ func puzzle19(data []string, b bool) int {
 	return count
 }
 
-func Puzzle19() int {
+func (s *Solutions) Puzzle19() int {
 	data := readFile("input/input19")
 	return puzzle19(data, false)
 }
 
-func Puzzle19b() int {
+func (s *Solutions) Puzzle19b() int {
 	data := readFile("input/input19")
 	return puzzle19(data, true)
 }

@@ -31,7 +31,7 @@ func puzzle9(data []int, preamble int) int {
 	panic("result not found")
 }
 
-func Puzzle9() int {
+func (s *Solutions) Puzzle9() int {
 	data := toNumbers(readFile("input/input09"))
 	return puzzle9(data, 25)
 }
@@ -55,7 +55,7 @@ func puzzle9b(data []int, preamble int) int {
 	return result
 }
 
-func Puzzle9b() int {
+func (s *Solutions) Puzzle9b() int {
 	data := toNumbers(readFile("input/input09"))
 	return puzzle9b(data, 25)
 }

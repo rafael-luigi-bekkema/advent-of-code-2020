@@ -23,8 +23,8 @@ dotted black bags contain no other bags.`, "\n")
 	}
 }
 
-func ExamplePuzzle7() {
-	fmt.Println(Puzzle7())
+func ExampleSolutions_Puzzle7() {
+	fmt.Println(solutions.Puzzle7())
 
 	// Output: 224
 }
@@ -61,8 +61,8 @@ dark violet bags contain no other bags.`, "\n")
 	}
 }
 
-func ExamplePuzzle7b() {
-	fmt.Println(Puzzle7b())
+func ExampleSolutions_Puzzle7b() {
+	fmt.Println(solutions.Puzzle7b())
 
 	// Output: 1488
 }

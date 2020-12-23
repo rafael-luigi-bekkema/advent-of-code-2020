@@ -1,6 +1,6 @@
 package main
 
-func Puzzle3() int {
+func (s *Solutions) Puzzle3() int {
 	lines := readFile("input/input03")
 	return puzzle3(lines)
 }
@@ -32,7 +32,7 @@ func calcSlope(input []string, right, down int) int {
 	return count
 }
 
-func Puzzle3b() int {
+func (s *Solutions) Puzzle3b() int {
 	lines := readFile("input/input03")
 	return puzzle3b(lines)
 }

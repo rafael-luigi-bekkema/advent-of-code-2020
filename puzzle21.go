@@ -91,7 +91,7 @@ func puzzle21(data []string) int {
 	return total
 }
 
-func Puzzle21() int {
+func (s *Solutions) Puzzle21() int {
 	data := readFile("input/input21")
 	return puzzle21(data)
 }
@@ -116,7 +116,7 @@ func puzzle21b(data []string) string {
 	return strings.Join(rdanger, ",")
 }
 
-func Puzzle21b() string {
+func (s *Solutions) Puzzle21b() string {
 	data := readFile("input/input21")
 	return puzzle21b(data)
 }

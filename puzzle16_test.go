@@ -26,8 +26,8 @@ nearby tickets:
 	}
 }
 
-func ExamplePuzzle16() {
-	fmt.Println(Puzzle16())
+func ExampleSolutions_Puzzle16() {
+	fmt.Println(solutions.Puzzle16())
 
 	// Output: 18142
 }
@@ -51,8 +51,8 @@ nearby tickets:
 	}
 }
 
-func ExamplePuzzle16b() {
-	fmt.Println(Puzzle16b())
+func ExampleSolutions_Puzzle16b() {
+	fmt.Println(solutions.Puzzle16b())
 
 	// Output: 1069784384303
 }

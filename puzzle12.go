@@ -51,7 +51,7 @@ func puzzle12(data []string) int {
 	return int(math.Abs(float64(ferry.x)) + math.Abs(float64(ferry.y)))
 }
 
-func Puzzle12() int {
+func (s *Solutions) Puzzle12() int {
 	data := readFile("input/input12")
 	return puzzle12(data)
 }
@@ -106,7 +106,7 @@ func puzzle12b(data []string) int {
 	return int(math.Abs(float64(ferry.x)) + math.Abs(float64(ferry.y)))
 }
 
-func Puzzle12b() int {
+func (s *Solutions) Puzzle12b() int {
 	data := readFile("input/input12")
 	return puzzle12b(data)
 }

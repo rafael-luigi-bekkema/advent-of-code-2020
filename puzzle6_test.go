@@ -29,8 +29,8 @@ b`
 	}
 }
 
-func ExamplePuzzle6() {
-	fmt.Println(Puzzle6())
+func ExampleSolutions_Puzzle6() {
+	fmt.Println(solutions.Puzzle6())
 
 	// Output: 6735
 }
@@ -58,8 +58,8 @@ b`
 	}
 }
 
-func ExamplePuzzle6b() {
-	fmt.Println(Puzzle6b())
+func ExampleSolutions_Puzzle6b() {
+	fmt.Println(solutions.Puzzle6b())
 
 	// Output: 3221
 }

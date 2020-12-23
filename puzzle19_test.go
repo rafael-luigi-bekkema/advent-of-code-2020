@@ -26,8 +26,8 @@ aaaabbb`, "\n")
 	}
 }
 
-func ExamplePuzzle19() {
-	fmt.Println(Puzzle19())
+func ExampleSolutions_Puzzle19() {
+	fmt.Println(solutions.Puzzle19())
 
 	// Output: 109
 }
@@ -87,8 +87,8 @@ aabbbbbaabbbaaaaaabbbbbababaaaaabbaaabba`, "\n")
 	}
 }
 
-func ExamplePuzzle19b() {
-	fmt.Println(Puzzle19b())
+func ExampleSolutions_Puzzle19b() {
+	fmt.Println(solutions.Puzzle19b())
 
 	// Output: 301
 }

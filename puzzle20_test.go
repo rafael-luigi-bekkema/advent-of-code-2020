@@ -120,8 +120,8 @@ Tile 3079:
 	}
 }
 
-func ExamplePuzzle20() {
-	fmt.Println(Puzzle20())
+func ExampleSolutions_Puzzle20() {
+	fmt.Println(solutions.Puzzle20())
 
 	// Output: 64802175715999
 }
@@ -241,8 +241,8 @@ Tile 3079:
 	}
 }
 
-func ExamplePuzzle20b() {
-	fmt.Println(Puzzle20b())
+func ExampleSolutions_Puzzle20b() {
+	fmt.Println(solutions.Puzzle20b())
 
 	// Output: 2146
 }

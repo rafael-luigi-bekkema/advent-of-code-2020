@@ -82,7 +82,7 @@ func puzzle18(data []string) int {
 	return sum
 }
 
-func Puzzle18() int {
+func (s *Solutions) Puzzle18() int {
 	data := readFile("input/input18")
 	return puzzle18(data)
 }
@@ -103,7 +103,7 @@ func puzzle18b(data []string) int {
 	return sum
 }
 
-func Puzzle18b() int {
+func (s *Solutions) Puzzle18b() int {
 	data := readFile("input/input18")
 	return puzzle18b(data)
 }

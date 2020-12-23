@@ -18,8 +18,8 @@ sqjhc mxmxvkd sbzzf (contains fish)`, "\n")
 	}
 }
 
-func ExamplePuzzle21() {
-	fmt.Println(Puzzle21())
+func ExampleSolutions_Puzzle21() {
+	fmt.Println(solutions.Puzzle21())
 
 	// Output: 2374
 }
@@ -36,8 +36,8 @@ sqjhc mxmxvkd sbzzf (contains fish)`, "\n")
 	}
 }
 
-func ExamplePuzzle21b() {
-	fmt.Println(Puzzle21b())
+func ExampleSolutions_Puzzle21b() {
+	fmt.Println(solutions.Puzzle21b())
 
 	// Output: fbtqkzc,jbbsjh,cpttmnv,ccrbr,tdmqcl,vnjxjg,nlph,mzqjxq
 }

@@ -246,7 +246,7 @@ func puzzle20(data string) int {
 	return total
 }
 
-func Puzzle20() int {
+func (s *Solutions) Puzzle20() int {
 	data, err := ioutil.ReadFile("input/input20")
 	if err != nil {
 		log.Panicf("could not read file: %s", err)
@@ -287,7 +287,7 @@ func puzzle20b(data string) int {
 	return hashCount
 }
 
-func Puzzle20b() int {
+func (s *Solutions) Puzzle20b() int {
 	data, err := ioutil.ReadFile("input/input20")
 	if err != nil {
 		log.Panicf("could not read file: %s", err)

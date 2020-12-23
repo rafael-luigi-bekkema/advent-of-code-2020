@@ -51,7 +51,7 @@ func puzzle5(data []string) int {
 	return maxSeatID
 }
 
-func Puzzle5() int {
+func (s *Solutions) Puzzle5() int {
 	data := readFile("input/input05")
 	return puzzle5(data)
 }
@@ -112,7 +112,7 @@ func puzzle5b(data []string) int {
 	return results[0]
 }
 
-func Puzzle5b() int {
+func (s *Solutions) Puzzle5b() int {
 	data := readFile("input/input05")
 	return puzzle5b(data)
 }

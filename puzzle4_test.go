@@ -27,8 +27,8 @@ iyr:2011 ecl:brn hgt:59in`, "\n")
 	}
 }
 
-func ExamplePuzzle4() {
-	fmt.Println(Puzzle4())
+func ExampleSolutions_Puzzle4() {
+	fmt.Println(solutions.Puzzle4())
 
 	// Output: 254
 }
@@ -74,8 +74,8 @@ iyr:2010 hgt:158cm hcl:#b6652a ecl:blu byr:1944 eyr:2021 pid:093154719`, "\n")
 	}
 }
 
-func ExamplePuzzle4b() {
-	fmt.Println(Puzzle4b())
+func ExampleSolutions_Puzzle4b() {
+	fmt.Println(solutions.Puzzle4b())
 
 	// Output: 184
 }

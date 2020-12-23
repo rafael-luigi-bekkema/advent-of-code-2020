@@ -19,8 +19,8 @@ F11`, "\n")
 	}
 }
 
-func ExamplePuzzle12() {
-	fmt.Println(Puzzle12())
+func ExampleSolutions_Puzzle12() {
+	fmt.Println(solutions.Puzzle12())
 
 	// Output: 1601
 }
@@ -38,8 +38,8 @@ F11`, "\n")
 	}
 }
 
-func ExamplePuzzle12b() {
-	fmt.Println(Puzzle12b())
+func ExampleSolutions_Puzzle12b() {
+	fmt.Println(solutions.Puzzle12b())
 
 	// Output: 13340
 }

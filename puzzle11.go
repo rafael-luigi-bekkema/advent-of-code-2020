@@ -77,7 +77,7 @@ func puzzle11(data string) int {
 	return strings.Count(string(seats), string(occupied))
 }
 
-func Puzzle11() int {
+func (s *Solutions) Puzzle11() int {
 	data, err := ioutil.ReadFile("input/input11")
 	if err != nil {
 		log.Panicf("could not read file: %s", err)
@@ -161,7 +161,7 @@ func puzzle11b(data string) int {
 	return strings.Count(string(seats), string(occupied))
 }
 
-func Puzzle11b() int {
+func (s *Solutions) Puzzle11b() int {
 	data, err := ioutil.ReadFile("input/input11")
 	if err != nil {
 		log.Panicf("could not read file: %s", err)

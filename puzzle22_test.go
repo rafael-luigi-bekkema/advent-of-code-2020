@@ -27,8 +27,8 @@ Player 2:
 	}
 }
 
-func ExamplePuzzle22() {
-	fmt.Println(Puzzle22())
+func ExampleSolutions_Puzzle22() {
+	fmt.Println(solutions.Puzzle22())
 
 	// Output: 33694
 }
@@ -54,8 +54,8 @@ Player 2:
 	}
 }
 
-func ExamplePuzzle22b() {
-	fmt.Println(Puzzle22b())
+func ExampleSolutions_Puzzle22b() {
+	fmt.Println(solutions.Puzzle22b())
 
 	// Output: 31835
 }

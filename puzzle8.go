@@ -29,7 +29,7 @@ func puzzle8(data []string) int {
 	return acc
 }
 
-func Puzzle8() int {
+func (s *Solutions) Puzzle8() int {
 	data := readFile("input/input08")
 	return puzzle8(data)
 }
@@ -90,7 +90,7 @@ func puzzle8b(data []string) int {
 	panic("no answer found")
 }
 
-func Puzzle8b() int {
+func (s *Solutions) Puzzle8b() int {
 	data := readFile("input/input08")
 	return puzzle8b(data)
 }

@@ -6,7 +6,7 @@ import (
 	"strings"
 )
 
-func Puzzle1() int {
+func (s *Solutions) Puzzle1() int {
 	data, _ := ioutil.ReadFile("input/input01")
 	strs := strings.Split(strings.TrimRight(string(data), "\n"), "\n")
 	input := make([]int, len(strs))
@@ -28,7 +28,7 @@ func puzzle1(input []int) int {
 	panic("puzzle1 result not found")
 }
 
-func Puzzle1b() int {
+func (s *Solutions) Puzzle1b() int {
 	data, _ := ioutil.ReadFile("input/input01")
 	strs := strings.Split(strings.TrimRight(string(data), "\n"), "\n")
 	input := make([]int, len(strs))

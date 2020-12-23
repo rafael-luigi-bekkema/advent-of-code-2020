@@ -65,7 +65,7 @@ func puzzle22(data []string) int {
 	return score
 }
 
-func Puzzle22() int {
+func (s *Solutions) Puzzle22() int {
 	data := readFile("input/input22")
 	return puzzle22(data)
 }
@@ -188,7 +188,7 @@ func puzzle22b(data []string) int {
 	return score
 }
 
-func Puzzle22b() int {
+func (s *Solutions) Puzzle22b() int {
 	data := readFile("input/input22")
 	return puzzle22b(data)
 }

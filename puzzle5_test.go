@@ -29,14 +29,14 @@ func TestPuzzle5(t *testing.T) {
 	}
 }
 
-func ExamplePuzzle5() {
-	fmt.Println(Puzzle5())
+func ExampleSolutions_Puzzle5() {
+	fmt.Println(solutions.Puzzle5())
 
 	// Output: 835
 }
 
-func ExamplePuzzle5b() {
-	fmt.Println(Puzzle5b())
+func ExampleSolutions_Puzzle5b() {
+	fmt.Println(solutions.Puzzle5b())
 
 	// Output: 649
 }

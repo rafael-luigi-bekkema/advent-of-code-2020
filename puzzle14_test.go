@@ -18,8 +18,8 @@ mem[8] = 0`, "\n")
 	}
 }
 
-func ExamplePuzzle14() {
-	fmt.Println(Puzzle14())
+func ExampleSolutions_Puzzle14() {
+	fmt.Println(solutions.Puzzle14())
 
 	// Output: 14839536808842
 }
@@ -36,8 +36,8 @@ mem[26] = 1`, "\n")
 	}
 }
 
-func ExamplePuzzle14b() {
-	fmt.Println(Puzzle14b())
+func ExampleSolutions_Puzzle14b() {
+	fmt.Println(solutions.Puzzle14b())
 
 	// Output: 4215284199669
 }

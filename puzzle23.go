@@ -80,7 +80,7 @@ func puzzle23(data string, moves int) int {
 	return result
 }
 
-func Puzzle23() int {
+func (s *Solutions) Puzzle23() int {
 	return puzzle23("198753462", 100)
 }
 
@@ -157,6 +157,6 @@ func puzzle23b(data string, moves int) int {
 	return result
 }
 
-func Puzzle23b() int {
+func (s *Solutions) Puzzle23b() int {
 	return puzzle23b("198753462", 10_000_000)
 }

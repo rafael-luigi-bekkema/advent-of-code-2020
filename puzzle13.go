@@ -27,7 +27,7 @@ func puzzle13(data []string) int {
 	return min * minBus
 }
 
-func Puzzle13() int {
+func (s *Solutions) Puzzle13() int {
 	data := readFile("input/input13")
 	return puzzle13(data)
 }
@@ -80,7 +80,7 @@ func puzzle13b(data string) int {
 	return t
 }
 
-func Puzzle13b() int {
+func (s *Solutions) Puzzle13b() int {
 	data := readFile("input/input13")
 	return puzzle13b(data[1])
 }
