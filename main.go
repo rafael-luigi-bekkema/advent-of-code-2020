@@ -4,26 +4,33 @@ import (
 	"fmt"
 	"os"
 	"reflect"
+
+	"gopkg.in/alecthomas/kingpin.v2"
 )
 
-type Solutions struct{}
+type Solutions struct {
+	debug bool
+}
 
 var solutions Solutions
 
 func main() {
+	day := kingpin.Arg("day", "Day").Required().Int()
+	part := kingpin.Arg("part", "Part").Required().Enum("1", "2")
+	debug := kingpin.Flag("debug", "Enable debug output").Short('d').Bool()
+	kingpin.Parse()
+	solutions.debug = *debug
+
 	if len(os.Args) < 3 {
 		fmt.Println("Give day and part (e.g. 23 1)")
 		os.Exit(1)
 	}
 
-	var part string
-	if os.Args[2] == "2" {
-		part = "b"
-	} else if os.Args[2] != "1" {
-		fmt.Println("Choose part 1 or 2")
-		os.Exit(1)
+	var spart string
+	if *part == "2" {
+		spart = "b"
 	}
-	funcName := fmt.Sprintf("Puzzle%s%s", os.Args[1], part)
+	funcName := fmt.Sprintf("Puzzle%d%s", *day, spart)
 	s := reflect.ValueOf(&solutions)
 	m := s.MethodByName(funcName)
 	if !m.IsValid() {
@@ -31,7 +38,7 @@ func main() {
 		os.Exit(1)
 	}
 	values := m.Call(nil)
-	fmt.Printf("Day %s part %s solution: ", os.Args[1], os.Args[2])
+	fmt.Printf("Day %d part %v solution: ", *day, *part)
 	for _, val := range values {
 		fmt.Printf("%v", val)
 	}

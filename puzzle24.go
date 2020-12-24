@@ -75,7 +75,6 @@ func (s *Solutions) Puzzle24() int {
 }
 
 func puzzle24b(data []string) int {
-	debug := false
 	tiles := puzzle24solve(data)
 	stiles := make([]*Tile, 0, len(tiles))
 	for _, tile := range tiles {
@@ -119,7 +118,7 @@ func puzzle24b(data []string) int {
 			tiles[coord].black = black
 		}
 
-		if debug && ((1 <= day && day <= 10) || (day >= 20 && day%10 == 0)) {
+		if solutions.debug && ((1 <= day && day <= 10) || (day >= 20 && day%10 == 0)) {
 			var count int
 			for _, tile := range tiles {
 				if tile.black {

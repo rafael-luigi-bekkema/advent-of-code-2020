@@ -1,10 +1,19 @@
 package main
 
 import (
+	"flag"
 	"fmt"
+	"os"
 	"strings"
 	"testing"
 )
+
+func TestMain(m *testing.M) {
+	debug := flag.Bool("d", false, "Enable debug output")
+	flag.Parse()
+	solutions.debug = *debug
+	os.Exit(m.Run())
+}
 
 func TestPuzzle24(t *testing.T) {
 	data := strings.Split(`sesenwnenenewseeswwswswwnenewsewsw
