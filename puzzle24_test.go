@@ -27,15 +27,30 @@ nenewswnwewswnenesenwnesewesw
 eneswnwswnwsenenwnwnwwseeswneewsenese
 neswnwewnwnwseenwseesewsenwsweewe
 wseweeenwnesenwwwswnew`, "\n")
-	expect := 10
-	result := puzzle24(data)
-	if result != expect {
-		t.Fatalf("expected %d, got %d", expect, result)
-	}
+	t.Run("part 1", func(t *testing.T) {
+		expect := 10
+		result := puzzle24(data)
+		if result != expect {
+			t.Fatalf("expected %d, got %d", expect, result)
+		}
+	})
+	t.Run("part 2", func(t *testing.T) {
+		expect := 2208
+		result := puzzle24b(data)
+		if result != expect {
+			t.Fatalf("expected %d, got %d", expect, result)
+		}
+	})
 }
 
 func ExampleSolutions_Puzzle24() {
 	fmt.Println(solutions.Puzzle24())
 
 	// Output: 244
+}
+
+func ExampleSolutions_Puzzle24b() {
+	fmt.Println(solutions.Puzzle24b())
+
+	// Output: 3665
 }
