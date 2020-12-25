@@ -5,8 +5,7 @@ func findLoops(key int) int {
 	loop := 0
 	subject := 7
 	for {
-		value *= subject
-		value %= 20201227
+		value = (subject * value) % 20201227
 		loop++
 		if value == key {
 			break
@@ -20,8 +19,7 @@ func findLoops(key int) int {
 func doLoops(subject, loops int) int {
 	value := 1
 	for loop := 1; loop <= loops; loop++ {
-		value *= subject
-		value %= 20201227
+		value = (subject * value) % 20201227
 	}
 	return value
 }
